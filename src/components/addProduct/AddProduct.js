@@ -166,7 +166,7 @@ const AddProduct = () => {
                     <button
                         type='submit'
                         className='bg-[#001EB9] px-9 py-3 text-white font-semibold rounded-lg cursor-pointer'>
-                        Add product
+                        {id ? 'Edit' : 'Add'} product
                     </button>
                 </div>
             </form>
