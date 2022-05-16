@@ -20,8 +20,7 @@ const Header = () => {
             navigate(`/products/search?searchQuery=${search}`);
 
             if (response?.status === 200) {
-                const searchData = response.data
-                // console.log('search',searchData);
+                const searchData = response.data;
                 dispatch(getProductBySearch(searchData));
             }
         }
@@ -45,7 +44,7 @@ const Header = () => {
             </div>
 
             <div className=''>
-                <p className='text-xl tracking-wider font-bold'>PRODUTS</p>
+                <p onClick={() => navigate('/')} className='text-xl tracking-wider font-bold cursor-pointer'>PRODUTS</p>
             </div>
 
             <div className='flex justify-between mb-7 '>
@@ -67,7 +66,7 @@ const Header = () => {
                 </div>
 
                 <div className='flex items-center'>
-                    <div onClick={() => openNewProduct()} className='bg-[#001EB9] py-2 px-10 mt-10 cursor-pointer'>
+                    <div onClick={() => openNewProduct()} className='bg-[#001EB9] py-2 px-10 mt-10 rounded-lg cursor-pointer'>
                         <p className='text-white'> New Product </p>
                     </div>
                     <div className='mt-10 cursor-pointer rounded-lg ml-3 border-2 py-1 px-3 border-[#001EB9]'>

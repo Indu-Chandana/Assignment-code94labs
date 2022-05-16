@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import Home from './components/Home/Home';
 import AddProduct from './components/addProduct/AddProduct';
-import SearchProduct from './components/searchProduct/SearchProduct';
+import SearchProduct from './components/searchProduct/SearchProducts';
 
 function App() {
   return (
