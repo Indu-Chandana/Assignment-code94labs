@@ -1,12 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ChevronDownIcon, SearchIcon, StarIcon } from '@heroicons/react/solid';
 import { useNavigate } from 'react-router-dom';
 
+import * as api from '../../utils/axios'
 
 const Header = () => {
     const navigate = useNavigate();
 
+    const [search, setSearch] = useState('');
+
     const openNewProduct = () => navigate('/add-product');
+
+    const searchPost = async () => {
+        if (search.trim()) {
+            const response = await api.getProductBySearch(search);
+            // working on it...
+        }
+    }
+
+    // const handleKeyPress = (e) => {
+    //     if (e.keyCode === 13) {
+    //       // search post
+    //       searchPost();
+    //     }
+    //   }
 
     return (
         <div className='max-w-[80%] mx-auto mt-5 items-center justify-center'>
@@ -32,8 +49,15 @@ const Header = () => {
             <div className='flex justify-between mb-7 '>
                 <div className=" flex w-full mt-8 hover:shadow-lg focus-within:shadow-lg max-w-md rounded-full  bg-[#f7f7f7] border-gray-200 px-4 py-2 sm:max-w-xl lg:max-w-2xl">
                     <div className='flex w-full items-center ' >
-                        <input placeholder='Search for products' type="text" className='flex-grow py-1 ml-4 bg-transparent focus:outline-none' />
-                        <div className='flex items-center px-6 py-2 bg-[#001EB9] rounded-full cursor-pointer'>
+                        <input
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            // onKeyPress={handleKeyPress}
+                            placeholder='Search for products'
+                            type="text"
+                            className='flex-grow py-1 ml-4 bg-transparent focus:outline-none'
+                        />
+                        <div onClick={searchPost} className='flex items-center px-6 py-2 bg-[#001EB9] rounded-full cursor-pointer'>
                             <SearchIcon className="h-5 mr-3 text-white  cursor-pointer" />
                             <p className='text-white '> Search </p>
                         </div>
