@@ -93,7 +93,7 @@ const AddProduct = () => {
             </div>
 
             <div className='flex items-center mt-8'>
-                <h1 className='text-4xl tracking-widest font-bold' >PRODUCTS</h1>
+                <h1 onClick={() => navigate('/')} className='text-4xl tracking-widest font-bold cursor-pointer' >PRODUCTS</h1>
                 <ChevronRightIcon className=' h-10 mx-5 text-[#001EB9]' />
                 <h1 className='text-xl tracking-widest font-bold text-[#001EB9]' >{id ? 'Editing' : 'Add new'} Product</h1>
             </div>
