@@ -8,6 +8,8 @@ const reducer = (products = [], action) => {
             return action.allData;
         case productsActions.DELETE:
             return products.filter((product) => product._id !== action.id);
+        case productsActions.FETCH_BY_SEARCH:
+            return action.searchData;
         default:
             return products;
     }

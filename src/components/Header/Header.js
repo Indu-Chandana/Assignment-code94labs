@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { ChevronDownIcon, SearchIcon, StarIcon } from '@heroicons/react/solid';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import * as api from '../../utils/axios'
+import { getProductBySearch } from '../../store/actions/products';
 
 const Header = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [search, setSearch] = useState('');
 
@@ -14,16 +17,15 @@ const Header = () => {
     const searchPost = async () => {
         if (search.trim()) {
             const response = await api.getProductBySearch(search);
-            // working on it...
+            navigate(`/products/search?searchQuery=${search}`);
+
+            if (response?.status === 200) {
+                const searchData = response.data
+                // console.log('search',searchData);
+                dispatch(getProductBySearch(searchData));
+            }
         }
     }
-
-    // const handleKeyPress = (e) => {
-    //     if (e.keyCode === 13) {
-    //       // search post
-    //       searchPost();
-    //     }
-    //   }
 
     return (
         <div className='max-w-[80%] mx-auto mt-5 items-center justify-center'>
@@ -52,7 +54,6 @@ const Header = () => {
                         <input
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            // onKeyPress={handleKeyPress}
                             placeholder='Search for products'
                             type="text"
                             className='flex-grow py-1 ml-4 bg-transparent focus:outline-none'
